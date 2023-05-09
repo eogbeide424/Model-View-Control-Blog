@@ -2,21 +2,33 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tech Blog</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Registry</title>
+  <link rel="stylesheet" href="/css/jass.css">
 </head>
 
 <body>
-    
-    <nav><span><input type="text" id="email"><input type="text" id="password"><button class="login"></button></span>
+  <header class="display-flex justify-space-between align-center p-2">
+    <h1>
+     User Dash Board
+    </h1>
+    {{#if logged_in}}
+    <nav>
+      <button class="btn" id="logout">logout</button>
     </nav>
-    <div>
-        <header class=""><a href="/"></a></header>
+    {{/if}}
+  </header>
+  <main class="container container-fluid mt-5">
+    {{{ body }}}
+  </main>
+  <footer>
+      
+  </footer>
 
-        {{{body}}}
-    </div>
+  {{#if logged_in}}
+  <script src="/js/logout.js"></script>
+  {{/if}}
 </body>
 
 </html>

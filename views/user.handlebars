@@ -1,34 +1,50 @@
-<section>
-    <div>
-        <div>
-            <h2>
-                <p>login</p>
-            </h2>
-            <p>Username</p>
-            <input id="username" type="text">
-            <p>Password</p>
-            <input id="password" type="text">
-        </div>
-    </div>
-</section>
-
-
-<div>
-    <div>
-        <h2>Welcome {{name}}</h2>
+<div class="row">
+    <div class="col-auto">
+        <h2>Welcome, {{name}}!</h2>
     </div>
 </div>
 
-<div>
-    <div>
-        <h3>Create a new post</h3>
+<div class="row mt-4">
+    <div class="col-md-6">
+        <h3>Create a New Project:</h3>
+
+        <form class="form new-project-form">
+            <div class="form-group">
+                <label for="project-name">Blog Title</label>
+                <input class="form-input" type="text" id="project-name" name="project-name" />
+            </div>
+
+            <div class="form-group">
+                <label for="project-desc">Start Blogging:</label>
+                <textarea class="form-input" id="post-desc" name="post-desc"></textarea>
+            </div>
+      </form>
     </div>
+         <h3>Older post</h3>
+            <div>
+                <div> {{#if post.length}}
+                    <div class="col-md-6 project-list">
+                        <h3>Current post:</h3>
+
+                        {{#each post as |post|}}
+                        <div class="row mb-2">
+                            <div class="col-md-8">
+                                <h4><a href="/post/{{post.id}}"></a></h4>
+                            </div>
+                            <button></button><button></button>
+                        </div>
+
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Create</button>
+                        </div>
+
 </div>
-
-<form action="" class="">
-    <div class="form-group">
-        <label for=""></label>
-        <input type="text">
-    </div>
-</form>
-
+<div class="col-md-4">
+    <button class="btn btn-sm btn-danger" data-id="{{post.id}}">DELETE</button>
+</div>
+</div>
+{{/each}}
+</div>
+{{/if}}
+</div>
