@@ -1,9 +1,9 @@
 const sequelize = require('../config/connection');
-const { User,Post,DashBoard} = require('../models/index');
+const { User,Post,Comment} = require('../models/index');
 
 
 const postSeedData =require('./postseedData.json');
-const dashBoardData= require('./dashBoardseedData.json');
+const commentSeedData= require('./comments.json');
 const userSeedData = require('./userseedData.json');
 
 const seedDataBase = async () => {
@@ -15,8 +15,8 @@ const seedDataBase = async () => {
     });
 
     for( const {id} of user){
-        const newDash = await DashBoard.create(dashBoardData,{
-            ...newDash,
+        const newComment = await Comment.create(commentSeedData,{
+            ...newComment,
             user_id: id,
         });
 

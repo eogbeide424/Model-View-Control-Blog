@@ -1,26 +1,34 @@
 const User = require('./User');
 const Post = require('./Post');
-const DashBoard = require('./dashBoard');
+const Comment = require('./Comment');
 
-DashBoard.hasOne(User, {
-    through: {
-        model:DashBoard,
-        foreignKey: 'user_id',
-        onDelete: 'CASCADE',
-    }
+User.hasMany(Post, {
+   foreignKey: 'user_id',
 
-});
-
-User.belongsToMany(Post, {
-    through: {
-        model:DashBoard,
-        foreignKey: 'post_id',
-    onDelete: 'CASCADE',
-    } 
+  
    
 });
+
 Post.belongsTo(User, {
     foreignKey: 'user_id'
 });
 
-module.exports = { User, Post, DashBoard };
+Comment.belongsTo(User, {
+  foreignKey: 'user_id',
+ });
+
+Comment.belongsTo(Post,{
+    foreignKey: 'user_id'
+});
+
+User.hasMany(Comment,{
+    foreignKey: 'user_id'
+});
+
+Post.hasMany(Comment, {
+    foreignKey: 'post_id'
+})
+
+
+
+module.exports = { User, Post, Comment };

@@ -3,10 +3,10 @@ const { Model, DataTypes } = require('sequelize');
 
 
 
-class DashBoard extends Model {}
+class Comments extends Model {}
 
 
-DashBoard.init(
+Comments.init(
     {
         id: {
             type: DataTypes.INTEGER,
@@ -18,7 +18,7 @@ DashBoard.init(
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
-                model: 'Post',
+                model: 'post',
                 key: 'id',
             },
         },
@@ -26,18 +26,22 @@ DashBoard.init(
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
-                model: 'User',
+                model: 'user',
                 key: 'id',
             },
         },
+        comment: {
+            type: DataTypes.STRING,
+            allowNull:false,
+        }
     },
     {
         sequelize,
         timestamps: false,
         freezeTableName: true,
         underscored: true,
-        modelName: 'DashBoard',
+        modelName: 'comment',
       }
 );
 
-module.exports = DashBoard;
+module.exports = Comments;

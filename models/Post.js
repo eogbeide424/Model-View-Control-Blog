@@ -26,18 +26,18 @@ Post.init(
             allowNull:false,
             defaultValue: DataTypes.NOW,
         },
-        dashBoard_id: {
-            type: DataTypes.INTEGER,
-            references: {
-                model: 'DashBoard',
-                key: 'id',
-            },
+        // dashBoard_id: {
+        //     type: DataTypes.INTEGER,
+        //     references: {
+        //         model: 'DashBoard',
+        //         key: 'id',
+        //     },
             
-        },
+        // },
         user_id: {
             type: DataTypes.INTEGER,
             references:{
-                model: 'User',
+                model: 'user',
                 key:'id',
             },
         },
@@ -48,7 +48,7 @@ Post.init(
         timestamps: false,
         freezeTableName: true,
         underscored: true,
-        modelName: 'Post',
+        modelName: 'post',
       }
 );
 
