@@ -8,7 +8,7 @@
     {
         "name": "Andre",
         "email": "adray@gmail.com",
-        "password": "dreDay"
+        "password": "dreDay123"
     },
     {
         "name": "Timmy",

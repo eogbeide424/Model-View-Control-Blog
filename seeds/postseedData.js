@@ -1,4 +1,5 @@
-[
+const {Post} = require('../models/index')
+const postData=[
     {
         "title": "The Story Of Lunch Meat",
         "content": "once upon a time this is not that there's no cap in my rap haha",
@@ -35,3 +36,6 @@
         "user_id":1
     }
 ]
+
+const postSeed =()=> Post.bulkCreate(postData);
+module.exports = postSeed;

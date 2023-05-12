@@ -3,48 +3,35 @@
         <h2>Welcome, {{name}}!</h2>
     </div>
 </div>
-
+{{#if logged_in}}
 <div class="row mt-4">
     <div class="col-md-6">
         <h3>Create a New Project:</h3>
+        {{/if}}
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <h3>Login</h3>
 
-        <form class="form new-project-form">
-            <div class="form-group">
-                <label for="project-name">Blog Title</label>
-                <input class="form-input" type="text" id="project-name" name="project-name" />
-            </div>
-
-            <div class="form-group">
-                <label for="project-desc">Start Blogging:</label>
-                <textarea class="form-input" id="post-desc" name="post-desc"></textarea>
-            </div>
-      </form>
-    </div>
-         <h3>Older post</h3>
-            <div>
-                <div> {{#if post.length}}
-                    <div class="col-md-6 project-list">
-                        <h3>Current post:</h3>
-
-                        {{#each post as |post|}}
-                        <div class="row mb-2">
-                            <div class="col-md-8">
-                                <h4><a href="/post/{{post.id}}"></a></h4>
-                            </div>
-                            <button></button><button></button>
-                        </div>
-
-
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-primary">Create</button>
-                        </div>
-
-</div>
-<div class="col-md-4">
-    <button class="btn btn-sm btn-danger" data-id="{{post.id}}">DELETE</button>
-</div>
-</div>
-{{/each}}
-</div>
-{{/if}}
-</div>
+                <form class="form new-project-form">
+                    {{#if logged_in}}
+                    <div class="form-group">
+                        <label for="project-name">Blog Title</label>
+                        <input class="form-input" type="text" id="project-name" name="project-name" />
+                    </div>
+                    {{/if}}
+                    <div class="form-group">
+                        <label for="user-name">User Name</label>
+                        <input class="form-input" type="text" id="userName" name="user" />
+                    </div>
+                    {{#if logged_in}}
+                    <div class="form-group">
+                        <label for="project-desc">Start Blogging:</label>
+                        <textarea class="form-input" id="post-desc" name="post-desc"></textarea>
+                    </div>
+                </form>
+                {{/if}}
+                <div class="form-group">
+                    <label for="password-area">Password</label>
+                    <textarea class="form-input" id="password" name="password-area"></textarea><button
+                        id="submit">Submit</button>
+                </div>
