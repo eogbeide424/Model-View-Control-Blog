@@ -26,15 +26,7 @@ Post.init(
             allowNull:false,
             defaultValue: DataTypes.NOW,
         },
-        // dashBoard_id: {
-        //     type: DataTypes.INTEGER,
-        //     references: {
-        //         model: 'DashBoard',
-        //         key: 'id',
-        //     },
-            
-        // },
-        user_id: {
+       user_id: {
             type: DataTypes.INTEGER,
             references:{
                 model: 'user',

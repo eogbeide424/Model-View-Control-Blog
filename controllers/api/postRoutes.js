@@ -27,7 +27,7 @@ router.get('/:id', async(req,res)=>{
         console.log(postData);
           
         const post = postData.get({plain: true});
-     console.lot( res.status(200).json(post));
+     console.log( res.status(200).json(post));
 
         res.render('post',{
             post,

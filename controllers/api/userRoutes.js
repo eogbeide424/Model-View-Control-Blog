@@ -1,7 +1,18 @@
 const router = require('express').Router();
-const { User, Post, Comment } = require('../../models/index');
-const withAuth = require('../../utils/auth');
+const { User, Post} = require('../../models/index');
+// const withAuth = require('../../utils/auth');
 
+router.get('/user', async (req, res) => {
+    try {
+        const userData = await User.findAll({
+            attributes: { exclude: ['password'] },
+            include: {
+                model: Post,
+                as: 'posts'
+            }
+
+        });
+        const users = userData.map((user) => user.get({ plain: true }));
 router.get('/:id', async (req, res) => {
     console.log('router is firing');
     try {
@@ -21,16 +32,7 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-router.get('/', async (req, res) => {
-    try {
-        const userData = await User.findAll({
-            attributes: { exclude: ['password'] },
-            include: {
-                model: Post,
-                as: 'posts'
-            }
 
-        });
 
         const user = userData.map((project) => project.get({ plain: true }));
         res.render('user', {
@@ -46,7 +48,7 @@ router.get('/', async (req, res) => {
 
 
 
-router.post('/', async (req, res) => {
+router.post('/user/signup', async (req, res) => {
     try {
         const userData = await User.create(req.body,{
             name: req.body.name,
@@ -69,17 +71,16 @@ router.post('/', async (req, res) => {
 
 });
 
-router.post('/login', async (req, res) => {
+router.post('/user/login', async (req, res) => {
     try {
         const userData = await User.findOne({ where: { email: req.body.email } });
 
         if (!userData) {
-            res.status(400)
-                .json({ message: 'Invalid email or password' });
+            res.status(400).json({ message: 'Invalid email or password' });
             return;
         }
 
-        const validPassword = await userData.checkPassword(req.body.password);
+        const validPassword = userData.checkPassword(req.body.password);
 
         if (!validPassword) {
             res.status(400)
@@ -89,20 +90,22 @@ router.post('/login', async (req, res) => {
 
         req.session.save(() => {
             req.session.user_id = userData.id;
+            req.session.name = userData.name;
             req.session.logged_in = true;
 
-            res.json({
+            res.status(200).json({
                 user: userData,
                 message: 'Your now logged in'
             });
         });
     } catch (err) {
-        res.status(500).json({ message: err.stack });
+        console.error("Error in login route", err)
+        res.status(500).json({ message: err });
     }
 });
 
-router.post('/logout', (req, res) => {
-    if (req.session.logged_in) {
+router.post('/user/logout', (req, res) => {
+    if (req.session.loggedIn) {
         req.session.destroy(() => {
             res.status(204).end();
         });

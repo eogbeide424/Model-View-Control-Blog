@@ -1,41 +1,44 @@
 const router = require('express').Router();
-const {Post, User } = require('../models/index');
-const withAuth = require('../utils/auth');
+const {Post,Comments } = require('../models');
+
 
 
 router.get('/', async (req,res)=> {
-    try {
-        const postData = await Post.findAll({
-            include: [
-                {
-                    model: User,
-                    attributes: ['name'],
-                },
-            ],
-        });
+ try {
+    const allPost = await Post.findAll({
+        include: [{
+            attributes:['title','content','date_created'],
+        },
+   ],
+    });
+          
 
-        const posts = postData.map((post)=> post.get({ plain: true}));
+     const posts = allPost.map((post)=> post.get({plain: true}));
 
-        res.render('homepage', {
-            posts,
-            logged_in: req.session.logged_in
-        });
-    } catch (err){
-        res.status(500).json(err);
-    }
-} );
+     res.render('homepage',{
+     
+        posts,
+        loggedIn: req.session.loggedIn,
+        
+    });
+   } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+   
+});
 
 
 
 
 
 router.get('/login', (req,res)=> {
-    if (req.session.logged_in){
+    if (!req.session.loggedIn){
         res.redirect('/user');
         return;
     }
 
-    res.render('login');
+    res.render('/login');
 });
 
 module.exports = router;

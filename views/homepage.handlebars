@@ -1,13 +1,29 @@
-<div class="card-body">
-              <form>
-                <div class="mb-3">
-                  <label for="email" class="form-label">Email</label>
-                  <input type="email" class="form-control" id="email">
-                </div>
-                <div class="mb-3">
-                  <label for="password" class="form-label">Password</label>
-                  <input type="password" class="form-control" id="password">
-                </div>
-                <button type="submit" class="btn btn-primary">Sign in</button>
-              </form>
-            </div>
+
+<section class="container">
+  <div class="row">
+    <div class="col-lg-12 d-flex align-items-center" id="comment-sec-head">
+      <div class="col-8 mt-2 align-center comment">
+        <div class="header bg-primary align-items-center text-white text-lg-center col-12" id="header">
+          <div class="col-4 justify-content-end" id="date">{{this.date_created}}</div>
+          Latest Tech News
+        </div>
+
+        {{post}}
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-6">
+        <form>
+          <div class="mb-2" id="comments"> {{post.comments}} </div>
+          <div id="header-text">Add a comment</div>
+         <input type="text">
+        </form>
+      </div>
+      <div class="col-lg-8 comment-input">
+        <div class="col-4 mt-1">
+          <button>Comment</button>
+        </div>
+      </div>
+    </div>
