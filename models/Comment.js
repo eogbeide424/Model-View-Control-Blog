@@ -30,9 +30,9 @@ Comments.init(
                 key: 'id',
             },
         },
-        comment: {
+        user_comment: {
             type: DataTypes.STRING,
-            allowNull:false,
+            allowNull:true,
         }
     },
     {

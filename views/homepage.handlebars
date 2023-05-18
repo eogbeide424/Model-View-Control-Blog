@@ -1,29 +1,66 @@
-
 <section class="container">
-  <div class="row">
-    <div class="col-lg-12 d-flex align-items-center" id="comment-sec-head">
-      <div class="col-8 mt-2 align-center comment">
-        <div class="header bg-primary align-items-center text-white text-lg-center col-12" id="header">
-          <div class="col-4 justify-content-end" id="date">{{this.date_created}}</div>
-          Latest Tech News
+   <div class="row">
+              <div class="col-12 header bg-primary align-items-center text-white text-lg-center" id="header">
+                                 Latest Tech News
+              </div>  
+   </section>                  
+              {{#each posts as |post| }}
+                 
+           
+   
+      <br/>
+       
+       <div class="row">
+        <label for="" class="bg-success text-white d-flex justify-content-center text-center">{{post.title}} 
+              <div class="col-4 d-flex justify-content-end ml-5" id="date">{{format_date this.date_created}}</div>
+          </label>
+      </div>  
+          <div class="row">
+               <div class="col-12 bg-white align-items-center text-center mt-2 mb-2">
+                      {{post.content}}
+                  </div>
+           </div>
+      
+      </br>
+         
+         {{#if comments}}
+        
+       
+        {{>comments-detail }}
+        
+      
+     
+      
+        
+        {{else}}
+        <div class="row">
+          <div class="col-4">☹</div>
+          <br>
+          <div class="col-8 mb-2 mt-5 fs-3 text-center bg-light" id="no-comments" ></div>
+          <p class="d-flex justify-content-center">No comments yet!</p>
         </div>
-
-        {{post}}
-      </div>
-    </div>
-
-
-    <div class="row">
-      <div class="col-6">
-        <form>
-          <div class="mb-2" id="comments"> {{post.comments}} </div>
-          <div id="header-text">Add a comment</div>
-         <input type="text">
+    
+  {{/if}}
+        {{/each}}
+       
+         
+         <div class="row">
+          <div class=" col-8 align-items-center=" id="comment-input">
+           <form>
+          <label class="bg-primary text-white" for="comment-area">
+            Add a comment
+            </label>
+           <br/>
+         <textarea name="add_comment" id="comment-input" cols="30" rows="2">
+          {{comments.comment}}
+         </textarea>
         </form>
-      </div>
-      <div class="col-lg-8 comment-input">
-        <div class="col-4 mt-1">
+          </div>
+         </div>
+         <br>
+         <div class="col-lg-4 commentBtn">
+        
           <button>Comment</button>
-        </div>
+        
       </div>
-    </div>
+  

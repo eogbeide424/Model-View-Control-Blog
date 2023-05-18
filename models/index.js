@@ -11,6 +11,7 @@ Post.belongsTo(User, {
 });
 
 Comments.belongsTo(User, {
+    through:'user_comment',
   foreignKey: 'user_id',
  });
 
