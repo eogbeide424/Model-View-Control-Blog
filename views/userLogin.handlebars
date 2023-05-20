@@ -1,6 +1,6 @@
 <h2>Login</h2>
 
-div class="container">
+<div class="container">
       <div class="row mt-5">
         <div class="col-md-6 mx-auto">
           <div class="card">
@@ -8,14 +8,16 @@ div class="container">
               <h4 class="mb-0">Login</h4>
             </div>
             <div class="card-body">
-              <form>
+              <form class="login-form">
                 <div class="mb-3">
+                 <label for="name" class="form-label">Name</label>
+                  <input type="name" class="form-control" id="user-name-login">
                   <label for="email" class="form-label">Email</label>
-                  <input type="email" class="form-control" id="email">
+                  <input type="email" class="form-control" id="login-email">
                 </div>
                 <div class="mb-3">
                   <label for="password" class="form-label">Password</label>
-                  <input type="password" class="form-control" id="password">
+                  <input type="password" class="form-control" id="password-login">
                 </div>
                 <button type="submit" class="btn btn-primary">Sign in</button>
               </form>

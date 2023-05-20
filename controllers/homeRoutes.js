@@ -30,7 +30,7 @@ router.get('/', async (req, res) => {
 
         res.render('homepage', {
             posts,  
-            loggedIn: req.session.loggedIn,
+            loggedIn: req.session.logged_in,
     });
     } catch (err) {
         console.log(err);
@@ -46,24 +46,24 @@ try{
   const comments= commentsData.map((comment)=>comment.get({plain: true}));
   res.render('homepage',{
     ...comments,
-    loggedIn: req.session.loggedIn,
+    loggedIn: req.session.logged_in,
   });
 }catch(err){
     console.error("\n--------DID NOT RENDER : ------/n",err);
 }
 });
 
-
-
-
-
-router.get('/login', (req, res) => {
-    if (!req.session.loggedIn) {
-        res.redirect('/user');
-        return;
-    }
-
-    res.render('/login');
+router.get("/signup", (req, res) => {
+  res.render("signup");
 });
+
+router.get("/login", (req, res) => {
+    if (req.session.logged_in) {
+      console.log("logged in");
+      res.redirect("/");
+      return;
+    }
+    res.render("userLogin");
+  });
 
 module.exports = router;
